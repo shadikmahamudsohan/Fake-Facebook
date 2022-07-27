@@ -1,11 +1,13 @@
 import React from 'react';
 import FromComponent from '../Components/FromComponent';
+import UsePost from '../API/usePost';
 
 const AddProducts = () => {
     const from = [
         { title: "Give a Title", name: "title", type: "text", placeholder: "Your Title" },
         { title: "Give a description", name: "Description", type: "text", placeholder: "User Description", textarea: true },
     ];
+
     const handleValue = (value) => {
         fetch('http://localhost:5000/post', {
             method: 'POST',
