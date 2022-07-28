@@ -14,9 +14,7 @@ const Header = ({ isOpen, setIsOpen }) => {
     const links = [
         { id: 1, href: '/', text: 'Home' },
         { id: 2, href: '/about', text: 'About' },
-        { id: 3, href: '/contact', text: 'Contact' },
-        { id: 4, href: '/login', text: 'Login' },
-        { id: 5, href: '/register', text: 'Register' },
+        { id: 3, href: '/contact', text: 'Contact' }
     ];
     //send user data to server
 
@@ -38,6 +36,7 @@ const Header = ({ isOpen, setIsOpen }) => {
                 .catch(err => console.log(err));
         }
     }, [user]);
+
     const handleLogout = () => {
         auth.signOut();
     };
@@ -61,9 +60,14 @@ const Header = ({ isOpen, setIsOpen }) => {
                                 <Nav.Link key={id} as={Link} to={href}>{text}</Nav.Link>
                             ))
                         }
-                        {user && <Nav.Link><ConfirmModal btnName="Log Out" handleModalData={setIfLogOut}>Log Out</ConfirmModal></Nav.Link>}
+                        {!user ?
+                            <Nav.Link as={Link} to="/login">Login</Nav.Link>
+                            :
+                            <Nav.Link>
+                                <ConfirmModal btnName="Log Out" handleModalData={setIfLogOut}>Log Out</ConfirmModal>
+                            </Nav.Link>}
                     </Nav>
-                    {user?.photoURL && <img class="rounded-circle border border-light border-2 ms-3" style={{ width: "50px" }} alt="50x50"
+                    {user?.photoURL && <img className="rounded-circle border border-light border-2 ms-3" style={{ width: "50px" }} alt="50x50"
                         src={user?.photoURL} data-holder-rendered="true"></img>}
                 </Navbar.Collapse>
             </Container>

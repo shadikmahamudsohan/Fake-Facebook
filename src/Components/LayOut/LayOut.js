@@ -1,6 +1,4 @@
 import React from 'react';
-import { Container } from 'react-bootstrap';
-import Footer from '../../Shared/Footer';
 import Header from '../../Shared/Header';
 import SidebarComponent from '../Sidebar';
 
@@ -15,7 +13,6 @@ const LayOut = ({ children }) => {
                     {children}
                 </div>
             </div>
-            {/* <Footer /> */}
         </div>
     );
 };

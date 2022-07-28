@@ -1,17 +1,18 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import googleImage from "../Images/google-logo.png";
 import { useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../Firebase/firebase.init';
 
 const Login = () => {
     const [signInWithGoogle, error] = useSignInWithGoogle(auth);
-
+    let location = useLocation();
     const navigate = useNavigate();
+    let from = location.state?.from?.pathname || "/";
     const handelSignIn = () => {
         signInWithGoogle()
-            .then(() => navigate("/"));
+            .then(() => navigate(from, { replace: true }));
     };
     return (
         <div className='d-flex justify-content-center align-items-center flex-column' style={{ minHeight: '100vh' }}>
