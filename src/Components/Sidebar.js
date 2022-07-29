@@ -4,24 +4,23 @@ import 'react-pro-sidebar/dist/css/styles.css';
 import { FaGem } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
 import { FaSearch } from 'react-icons/fa';
-import useGet from '../API/useGet';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
+import useGetRerender from '../API/useGetReRander';
 
 const SidebarComponent = ({ isOpen }) => {
     const [search, setSearch] = useState('');
-    const allUser = useGet({ url: 'user' });
+    const allUser = useGetRerender({ url: 'user' });
     const navigate = useNavigate();
 
     const filteredName = allUser?.filter(user => {
-        return user.name.toLowerCase().includes(search.toLowerCase());
+        return user?.name?.toLowerCase().includes(search?.toLowerCase());
     });
-    console.log(filteredName);
 
     return (
-        <ProSidebar collapsed={isOpen} height="100px">
+        <ProSidebar collapsed={isOpen} style={{ height: "100vh", overflow: 'hidden' }}>
             <Menu iconShape="circle">
-                <div style={{ minHeight: "90vh" }}>
+                <div>
                     {/* <MenuItem icon={<FaGem />}>Dashboard</MenuItem>
                     <MenuItem icon={<FaGem />}>Dashboard</MenuItem>
                     <MenuItem icon={<FaGem />}>Dashboard</MenuItem>
@@ -38,14 +37,17 @@ const SidebarComponent = ({ isOpen }) => {
                         />
                     </MenuItem>
                     <div>
-                        {filteredName?.map(({ _id, name, photo }) => (
-                            <MenuItem
-                                icon={<img src={photo} alt={name} style={{ width: "30px", height: "30px", borderRadius: "50%" }} />}
-                                key={_id}
-                                onClick={() => { navigate(`/inbox/${_id}`); }}
-                            >
-                                {name}
-                            </MenuItem >
+                        {filteredName?.map(({ _id, name, photo, email }) => (
+                            <>
+                                {!photo ? photo = 'https://via.placeholder.com/150' : null}
+                                <MenuItem
+                                    icon={<img src={photo} alt={name} style={{ width: "30px", height: "30px", borderRadius: "50%" }} />}
+                                    key={_id}
+                                    onClick={() => { navigate(`/inbox/${email}`); }}
+                                >
+                                    {name}
+                                </MenuItem >
+                            </>
                         ))}
                     </div>
                 </div>

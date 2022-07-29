@@ -13,28 +13,26 @@ const Header = ({ isOpen, setIsOpen }) => {
     const [ifLogOut, setIfLogOut] = useState(false);
     const links = [
         { id: 1, href: '/', text: 'Home' },
-        { id: 2, href: '/about', text: 'About' },
-        { id: 3, href: '/contact', text: 'Contact' }
+        { id: 3, href: '/updateProfile', text: 'Update' },
     ];
     //send user data to server
-
-    useEffect(() => {
-        const userData = {
-            name: user?.displayName,
-            email: user?.email,
-            photo: user?.photoURL,
-        };
-        if (user) {
-            fetch(`http://localhost:5000/user/${user.email}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-type': 'application/json; charset=UTF-8',
-                },
-                body: JSON.stringify(userData)
-            }).then(res => res.json())
-                .catch(err => console.log(err));
-        }
-    }, [user]);
+    // useEffect(() => {
+    //     const userData = {
+    //         name: user?.displayName,
+    //         email: user?.email,
+    //         photo: user?.photoURL,
+    //     };
+    //     if (user) {
+    //         fetch(`http://localhost:5000/user/${user.email}`, {
+    //             method: 'PUT',
+    //             headers: {
+    //                 'Content-type': 'application/json; charset=UTF-8',
+    //             },
+    //             body: JSON.stringify(userData)
+    //         }).then(res => res.json())
+    //             .catch(err => console.log(err));
+    //     }
+    // }, [user]);
 
     const handleLogout = () => {
         auth.signOut();
