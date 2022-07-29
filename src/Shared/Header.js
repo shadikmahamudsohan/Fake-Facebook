@@ -8,6 +8,7 @@ import auth from '../Firebase/firebase.init';
 import { HiMenu } from 'react-icons/hi';
 import { IoMdClose } from 'react-icons/io';
 import ConfirmModal from './ConfirmModal';
+import useGetRerender from '../API/useGetReRander';
 const Header = ({ isOpen, setIsOpen }) => {
     const [user] = useAuthState(auth);
     const [ifLogOut, setIfLogOut] = useState(false);
@@ -42,6 +43,8 @@ const Header = ({ isOpen, setIsOpen }) => {
         setIfLogOut(false);
     }
 
+    const userData = useGetRerender({ url: 'user', id: user?.email });
+
     return (
         <Navbar bg="dark" variant="dark" expand="lg" sticky="top">
             <Container>
@@ -64,8 +67,12 @@ const Header = ({ isOpen, setIsOpen }) => {
                                 <ConfirmModal btnName="Log Out" handleModalData={setIfLogOut}>Log Out</ConfirmModal>
                             </Nav.Link>}
                     </Nav>
-                    {user?.photoURL && <img className="rounded-circle border border-light border-2 ms-3" style={{ width: "50px" }} alt="50x50"
-                        src={user?.photoURL} data-holder-rendered="true"></img>}
+                    {(user?.photoURL) && <>
+                        {userData?.photo ? <img src={userData?.photo} alt="user" className="rounded-circle border border-light border-2 ms-3" style={{ width: '50px', height: '50px' }} /> :
+                            <img className="rounded-circle border border-light border-2 ms-3" style={{ width: "50px" }} alt="User"
+                                src={user?.photoURL}></img>
+                        }
+                    </>}
                 </Navbar.Collapse>
             </Container>
         </Navbar>

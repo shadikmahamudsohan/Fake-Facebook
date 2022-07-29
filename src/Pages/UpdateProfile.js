@@ -8,9 +8,6 @@ import useGetRerender from '../API/useGetReRander';
 
 const UpdateProfile = () => {
     const [ifLoading, setIfLoading] = useState(false);
-    const [imageData, setImageData] = useState(null);
-    const [userImage, setUserImage] = useState('');
-    const [details, setDetails] = useState({});
     const [user] = useAuthState(auth);
     const from = [
         { title: "Give your name", name: "name", type: "text", placeholder: "Your Name" },
@@ -23,8 +20,6 @@ const UpdateProfile = () => {
     const handleImageUpload = (e) => {
         console.log(e);
         const image = e.target.files[0];
-        console.log(image);
-        alert("Image Uploaded start");
         const imageStorageKey = 'c15b3e667d12ba20eff0893d10dc93ba';
         const formData = new FormData();
         setIfLoading(true);
@@ -37,7 +32,6 @@ const UpdateProfile = () => {
             .then(res => res.json())
             .then(data => {
                 if (data) {
-                    setUserImage(data?.data?.url);
                     setIfLoading(false);
                     if (user?.email) {
                         fetch(`http://localhost:5000/user/${user?.email}`, {
@@ -49,7 +43,7 @@ const UpdateProfile = () => {
 
                         }).then(res => res.json())
                             .then(data => {
-                                alert("Image Updated");
+                                console.log("Image Updated");
                             })
                             .catch(err => console.log(err));
                     }
@@ -58,15 +52,16 @@ const UpdateProfile = () => {
     };
 
     const handleValue = (value) => {
-        // setImageFile(value?.image);
+        const today = new Date();
+        const date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        const time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        const dateTime = date + '//' + time;
+        console.log(dateTime);
         const details = {
             name: value?.name,
             description: value?.description,
+            updated: dateTime,
         };
-        setDetails(details);
-        if (value?.image) {
-            setImageData(value.image);
-        }
 
         if (user?.email) {
             fetch(`http://localhost:5000/user/${user?.email}`, {
@@ -108,6 +103,7 @@ const UpdateProfile = () => {
                                 {userData?.description}
                             </Card.Text>
                         </Card.Body>
+                        {userData?.updated && <Card.Footer>Last updated: {userData?.updated}</Card.Footer>}
                     </Card>
                 </div>
             </div>

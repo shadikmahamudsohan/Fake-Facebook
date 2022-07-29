@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarContent } from 'react-pro-sidebar';
+import React, { useState } from 'react';
+import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
-import { FaGem } from 'react-icons/fa';
-import { FaHeart } from 'react-icons/fa';
 import { FaSearch } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
