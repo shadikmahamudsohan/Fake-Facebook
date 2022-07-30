@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-const FromComponent = ({ AllFrom, handleValue, disabled, handleImageUpload, required, defaultValue }) => {
+const FromComponent = ({ AllFrom, handleValue, disabled, handleImageUpload, required, defaultValue, handleClose }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         const formValues = {};
@@ -65,7 +65,7 @@ const FromComponent = ({ AllFrom, handleValue, disabled, handleImageUpload, requ
                 </Form.Group>
 
             ))}
-            <Button variant="primary" disabled={disabled} type="submit">
+            <Button variant="primary" disabled={disabled} onClick={handleClose} type="submit">
                 Submit
             </Button>
         </Form>

@@ -13,8 +13,9 @@ const Header = ({ isOpen, setIsOpen }) => {
     const [user] = useAuthState(auth);
     const [ifLogOut, setIfLogOut] = useState(false);
     const links = [
-        { id: 1, href: '/', text: 'Home' },
-        { id: 3, href: '/updateProfile', text: 'Update' },
+        { id: 1123123, href: '/', text: 'Home' },
+        { id: 1342341, href: '/imageShare', text: 'ImageShare' },
+        { id: 3413541341, href: '/updateProfile', text: 'Update' },
     ];
     //send user data to server
     // useEffect(() => {

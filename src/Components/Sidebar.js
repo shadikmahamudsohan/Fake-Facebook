@@ -36,16 +36,14 @@ const SidebarComponent = ({ isOpen }) => {
                     </MenuItem>
                     <div>
                         {filteredName?.map(({ _id, name, photo, email }) => (
-                            <>
+                            <div key={_id} onClick={() => { navigate(`/inbox/${email}`); }}>
                                 {!photo ? photo = 'https://via.placeholder.com/150' : null}
                                 <MenuItem
                                     icon={<img src={photo} alt={name} style={{ width: "30px", height: "30px", borderRadius: "50%" }} />}
-                                    key={_id}
-                                    onClick={() => { navigate(`/inbox/${email}`); }}
                                 >
                                     {name}
                                 </MenuItem >
-                            </>
+                            </div>
                         ))}
                     </div>
                 </div>

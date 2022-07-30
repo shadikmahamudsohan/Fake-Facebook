@@ -79,35 +79,33 @@ const UpdateProfile = () => {
         }
     };
     return (
-        <LayOut>
-            <div className="row">
-                <div className="col-md-6">
-                    <Card style={{ maxWidth: '30rem' }}>
-                        <Card.Body>
-                            <Card.Title>Update Profile</Card.Title>
-                            <Card.Text>
-                                <FromComponent AllFrom={from} handleValue={handleValue} disabled={ifLoading} handleImageUpload={handleImageUpload} required={false} defaultValue={userData} />
-                            </Card.Text>
-                            {ifLoading && <div>Image uploading...</div>}
-                        </Card.Body>
-                    </Card>
-                </div>
-                <div className="col-md-6">
-                    <Card style={{ maxWidth: '30rem' }}>
-                        <Card.Body>
-                            <Card.Title>{userData?.name}</Card.Title>
-                            <Card.Text>
-                                <img src={userData?.photo} alt="user" style={{ width: '100%' }} />
-                            </Card.Text>
-                            <Card.Text>
-                                {userData?.description}
-                            </Card.Text>
-                        </Card.Body>
-                        {userData?.updated && <Card.Footer>Last updated: {userData?.updated}</Card.Footer>}
-                    </Card>
-                </div>
+        <div className="row">
+            <div className="col-md-6">
+                <Card style={{ maxWidth: '30rem' }}>
+                    <Card.Body>
+                        <Card.Title>Update Profile</Card.Title>
+                        <Card.Text>
+                            <FromComponent AllFrom={from} handleValue={handleValue} disabled={ifLoading} handleImageUpload={handleImageUpload} required={false} defaultValue={userData} />
+                        </Card.Text>
+                        {ifLoading && <div>Image uploading...</div>}
+                    </Card.Body>
+                </Card>
             </div>
-        </LayOut>
+            <div className="col-md-6">
+                <Card style={{ maxWidth: '30rem' }}>
+                    <Card.Body>
+                        <Card.Title>{userData?.name}</Card.Title>
+                        <Card.Text>
+                            <img src={userData?.photo} alt="user" style={{ width: '100%' }} />
+                        </Card.Text>
+                        <Card.Text>
+                            {userData?.description}
+                        </Card.Text>
+                    </Card.Body>
+                    {userData?.updated && <Card.Footer>Last updated: {userData?.updated}</Card.Footer>}
+                </Card>
+            </div>
+        </div>
     );
 };
 
