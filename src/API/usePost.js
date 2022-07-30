@@ -1,7 +1,7 @@
 const UsePost = (values, data) => {
     const { id, url } = values;
     console.log(data);
-    const URL = `http://localhost:5000/${!id ? url : `${url}/${id}`}`;
+    const URL = `${process.env.REACT_APP_SERVER_URL}${!id ? url : `${url}/${id}`}`;
     fetch(URL, {
         method: 'POST',
         body: JSON.stringify(data),

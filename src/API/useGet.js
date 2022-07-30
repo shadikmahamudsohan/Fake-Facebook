@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 const useGet = (values) => {
     const { id, url, loadAgain } = values;
     const [data, setData] = React.useState(null);
-    const URL = `http://localhost:5000/${!id ? url : `${url}/${id}`}`;
+    const URL = `${process.env.REACT_APP_SERVER_URL}${!id ? url : `${url}/${id}`}`;
 
     useEffect(() => {
         fetch(URL)

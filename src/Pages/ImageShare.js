@@ -35,7 +35,7 @@ const ImageShare = () => {
             like: 0,
         };
         if (details) {
-            fetch('http://localhost:5000/imageShare', {
+            fetch(`${process.env.REACT_APP_SERVER_URL}imageShare`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -84,7 +84,7 @@ const ImageShare = () => {
                                 <div className="btn-group">
                                     {email === user?.email ?
                                         <button className="btn btn-sm btn-outline-danger" onClick={() => {
-                                            fetch(`http://localhost:5000/imageShare/${_id}`, {
+                                            fetch(`${process.env.REACT_APP_SERVER_URL}imageShare/${_id}`, {
                                                 method: 'DELETE'
                                             }).then(res => res.json())
                                                 .then(data => {
@@ -96,7 +96,7 @@ const ImageShare = () => {
                                             <span className="text-danger me-2">{like}</span>
                                             {!isLiked ? <button style={{ width: '40px', height: '40px' }} className="d-flex align-items-center justify-content-center rounded-circle bg-danger p-2 border-1 border border-light"
                                                 onClick={() => {
-                                                    fetch(`http://localhost:5000/imageShare/${_id}`, {
+                                                    fetch(`${process.env.REACT_APP_SERVER_URL}imageShare/${_id}`, {
                                                         method: 'PATCH',
                                                         headers: {
                                                             'Content-Type': 'application/json'
@@ -115,7 +115,7 @@ const ImageShare = () => {
                                             </button> :
                                                 <button style={{ width: '40px', height: '40px' }} className="d-flex align-items-center justify-content-center rounded-circle bg-light p-2 border-1 border border-dark"
                                                     onClick={() => {
-                                                        fetch(`http://localhost:5000/imageShare/${_id}`, {
+                                                        fetch(`${process.env.REACT_APP_SERVER_URL}imageShare/${_id}`, {
                                                             method: 'PATCH',
                                                             headers: {
                                                                 'Content-Type': 'application/json'

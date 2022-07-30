@@ -34,7 +34,7 @@ const UpdateProfile = () => {
                 if (data) {
                     setIfLoading(false);
                     if (user?.email) {
-                        fetch(`http://localhost:5000/user/${user?.email}`, {
+                        fetch(`${process.env.REACT_APP_SERVER_URL}user/${user?.email}`, {
                             method: 'PATCH',
                             headers: {
                                 'Content-Type': 'application/json'
@@ -64,7 +64,7 @@ const UpdateProfile = () => {
         };
 
         if (user?.email) {
-            fetch(`http://localhost:5000/user/${user?.email}`, {
+            fetch(`${process.env.REACT_APP_SERVER_URL}user/${user?.email}`, {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'

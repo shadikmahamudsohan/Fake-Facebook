@@ -25,7 +25,7 @@ const Header = ({ isOpen, setIsOpen }) => {
     //         photo: user?.photoURL,
     //     };
     //     if (user) {
-    //         fetch(`http://localhost:5000/user/${user.email}`, {
+    //         fetch(`${process.env.REACT_APP_SERVER_URL}user/${user.email}`, {
     //             method: 'PUT',
     //             headers: {
     //                 'Content-type': 'application/json; charset=UTF-8',
@@ -52,7 +52,7 @@ const Header = ({ isOpen, setIsOpen }) => {
                 <button onClick={() => setIsOpen(!isOpen)} className='p-2 px-3 rounded-3 me-5 bg-dark text-light border-light border'>
                     {isOpen ? <IoMdClose size={30} className='text-light' /> : <HiMenu size={30} className='text-light' />}
                 </button>
-                <Navbar.Brand as={Link} to="/" className="fw-bold">Fake-Messenger</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/" className="fw-bold">Fake-Social-Media</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="ms-auto align-items-center">

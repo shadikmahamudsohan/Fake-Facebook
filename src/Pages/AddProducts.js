@@ -1,6 +1,5 @@
 import React from 'react';
 import FromComponent from '../Components/FromComponent';
-import UsePost from '../API/usePost';
 
 const AddProducts = () => {
     const from = [
@@ -9,7 +8,7 @@ const AddProducts = () => {
     ];
 
     const handleValue = (value) => {
-        fetch('http://localhost:5000/post', {
+        fetch(`${process.env.REACT_APP_SERVER_URL}post`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
