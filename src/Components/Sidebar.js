@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
+import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
-import { FaSearch } from 'react-icons/fa';
+import { FaHeart, FaSearch } from 'react-icons/fa';
+import { SiGooglemessages } from 'react-icons/si';
 import { useNavigate } from 'react-router-dom';
 import Form from 'react-bootstrap/Form';
 import useGetRerender from '../API/useGetReRander';
+import { BsImageFill } from 'react-icons/bs';
+import { MdOndemandVideo } from 'react-icons/md';
 
 const SidebarComponent = ({ isOpen }) => {
     const [search, setSearch] = useState('');
@@ -15,26 +18,33 @@ const SidebarComponent = ({ isOpen }) => {
         return user?.name?.toLowerCase().includes(search?.toLowerCase());
     });
 
+
+
+    const links = [
+        { id: 1342341, href: '/imageShare', text: 'ImageShare', icon: <BsImageFill /> },
+        { id: 111111123, href: '/shareVideo', text: 'ShareVideo', icon: <MdOndemandVideo /> },
+    ];
+
+
+
     return (
         <ProSidebar collapsed={isOpen} style={{ height: "100vh", overflow: 'hidden' }}>
             <Menu iconShape="circle">
                 <div>
-                    {/* <MenuItem icon={<FaGem />}>Dashboard</MenuItem>
-                    <MenuItem icon={<FaGem />}>Dashboard</MenuItem>
-                    <MenuItem icon={<FaGem />}>Dashboard</MenuItem>
-                    <SubMenu title="Components" icon={<FaHeart />}>
+                    {/* <SubMenu title="Components" icon={<FaHeart />}>
                         <MenuItem>Component 1</MenuItem>
                         <MenuItem>Component 2</MenuItem>
                     </SubMenu> */}
-                    <MenuItem icon={<FaSearch />}>
-                        <Form.Control
-                            type="text"
-                            id="search"
-                            placeholder="Search"
-                            onChange={(e) => setSearch(e.target.value)}
-                        />
-                    </MenuItem>
-                    <div>
+
+                    <SubMenu title="Message" icon={<SiGooglemessages />}>
+                        <MenuItem icon={<FaSearch />}>
+                            <Form.Control
+                                type="text"
+                                id="search"
+                                placeholder="Search"
+                                onChange={(e) => setSearch(e.target.value)}
+                            />
+                        </MenuItem>
                         {filteredName?.map(({ _id, name, photo, email }) => (
                             <div key={_id} onClick={() => { navigate(`/inbox/${email}`); }}>
                                 {!photo ? photo = 'https://via.placeholder.com/150' : null}
@@ -45,7 +55,18 @@ const SidebarComponent = ({ isOpen }) => {
                                 </MenuItem >
                             </div>
                         ))}
-                    </div>
+                    </SubMenu>
+                    {
+                        links.map(({ id, href, text, icon }) => (
+                            <MenuItem key={id} onClick={() => {
+                                navigate(href);
+                            }} icon={icon}>
+                                {text}
+                            </MenuItem>
+                        ))
+                    }
+
+
                 </div>
             </Menu>
         </ProSidebar>

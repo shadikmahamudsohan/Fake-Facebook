@@ -8,6 +8,7 @@ import ImageShare from "./Pages/ImageShare";
 
 //css global file
 import './CSS/AddButton.css';
+import ShareVideo from "./Pages/ShareVideo";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="inbox/:email" element={<Inbox />} />
           <Route path="imageShare" element={<ImageShare />} />
           <Route path="updateProfile" element={<UpdateProfile />} />
+          <Route path="shareVideo" element={<ShareVideo />} />
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>

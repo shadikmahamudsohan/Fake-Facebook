@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import FromComponent from '../Components/FromComponent';
 
-const FormModal = ({ handleModalData, from, handleImageUpload, children, uploading }) => {
+const FormModal = ({ handleModalData, from, handleImageUpload, children, uploading, required }) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -23,8 +23,18 @@ const FormModal = ({ handleModalData, from, handleImageUpload, children, uploadi
                     <Modal.Title>Modal title</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <FromComponent AllFrom={from} handleValue={handleModalData} handleImageUpload={handleImageUpload} required={false} disabled={uploading} handleClose={handleClose} />
-                    {uploading ? <div className="text-center">Image is uploading...</div> : null}
+                    {!required ?
+                        <>
+                            <FromComponent AllFrom={from} handleValue={handleModalData} handleImageUpload={handleImageUpload} required={false} disabled={uploading} handleClose={handleClose} />
+                            {uploading ? <div className="text-center">Image is uploading...</div> : null}
+                        </>
+                        :
+                        <>
+                            <FromComponent AllFrom={from} handleValue={handleModalData} handleImageUpload={handleImageUpload} required={true} disabled={uploading} handleClose={handleClose} />
+                            {uploading ? <div className="text-center">Image is uploading...</div> : null}
+                        </>
+                    }
+
                 </Modal.Body>
             </Modal>
         </>

@@ -13,6 +13,7 @@ const FromComponent = ({ AllFrom, handleValue, disabled, handleImageUpload, requ
             }
         });
         handleValue(formValues);
+        handleClose();
     };
 
     return (
@@ -65,7 +66,7 @@ const FromComponent = ({ AllFrom, handleValue, disabled, handleImageUpload, requ
                 </Form.Group>
 
             ))}
-            <Button variant="primary" disabled={disabled} onClick={handleClose} type="submit">
+            <Button variant="primary" disabled={disabled} type="submit">
                 Submit
             </Button>
         </Form>
