@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    position: fixed;
     right: 35px;
     bottom: 20px;
     transition: 0.5s;
@@ -21,4 +21,20 @@
 .add-icon {
     font-size: 50px;
     color: #adb5bd
+}
+
+.back-button {
+    background-color: rgb(33, 37, 41);
+    border-radius: 50%;
+    width: 65px;
+    height: 65px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    right: 35px;
+    top: 75px;
+    transition: 0.5s;
+    border: 2px solid #fff;
+    cursor: pointer;
 }

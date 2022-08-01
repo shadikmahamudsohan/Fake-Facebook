@@ -5,10 +5,13 @@ import Login from "./Pages/Login";
 import UpdateProfile from "./Pages/UpdateProfile";
 import RequireAuth from "./RequiredRoute/RequireAuth";
 import ImageShare from "./Pages/ImageShare";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 //css global file
 import './CSS/AddButton.css';
 import ShareVideo from "./Pages/ShareVideo";
+import Documents from "./Pages/Documents";
+import CreateDocuments from "./Pages/CreateDocuments";
 
 function App() {
   return (
@@ -19,6 +22,8 @@ function App() {
           <Route path="imageShare" element={<ImageShare />} />
           <Route path="updateProfile" element={<UpdateProfile />} />
           <Route path="shareVideo" element={<ShareVideo />} />
+          <Route path="document" element={<Documents />} />
+          <Route path="create-document" element={<CreateDocuments />} />
         </Route>
         <Route path="/login" element={<Login />} />
       </Routes>

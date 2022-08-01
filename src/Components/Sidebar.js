@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import 'react-pro-sidebar/dist/css/styles.css';
 import { FaHeart, FaSearch } from 'react-icons/fa';
@@ -8,8 +8,9 @@ import Form from 'react-bootstrap/Form';
 import useGetRerender from '../API/useGetReRander';
 import { BsImageFill } from 'react-icons/bs';
 import { MdOndemandVideo } from 'react-icons/md';
+import { FaFolderOpen } from 'react-icons/fa';
 
-const SidebarComponent = ({ isOpen }) => {
+const SidebarComponent = ({ isOpen, setIsOpen }) => {
     const [search, setSearch] = useState('');
     const allUser = useGetRerender({ url: 'user' });
     const navigate = useNavigate();
@@ -23,6 +24,7 @@ const SidebarComponent = ({ isOpen }) => {
     const links = [
         { id: 1342341, href: '/imageShare', text: 'ImageShare', icon: <BsImageFill /> },
         { id: 111111123, href: '/shareVideo', text: 'ShareVideo', icon: <MdOndemandVideo /> },
+        { id: 12221123, href: '/document', text: 'document', icon: <FaFolderOpen /> },
     ];
 
 
